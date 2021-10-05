@@ -9,3 +9,5 @@ Após isso para conseguir usar essa aplicação é necessario colocar sua senha 
   <connectionStrings>                                                                                                                V
     <add name="StringConexao" providerName="MySql.Data.MySqlClient" connectionString="server=localhost;database=groupus;uid=root;pwd=''" />
   </connectionStrings>
+
+Eu deixei o Bd.sql na Brench Master e com ele você é capaz de criar o banco, com alguns pré cadastros, como um usuário com o login "liax@gmail.com" e senha "Abc123".
