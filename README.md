@@ -1,9 +1,9 @@
 # covide
 Covid-e é um software desenvolvido em MVC, sendo uma ferramenta com intuito de administrar vacinas, lotes de vacinas e vacinados do covid-19, cadastrados no sistema.
 ------------------
-Primeiramente para abrir o software é necessário abri o arquivo Covid.sln
+Primeiramente para abrir o software é necessário abri o arquivo Covid.sln, de preferência Visual Studio 2019
 
-Após isso para conseguir usar essa aplicação é necessario colocar sua senha do Banco no último web.config                                
+Após isso para conseguir usar essa aplicação é necessario colocar sua senha e usuario do Banco no último web.config                                
                                                                                                                               Colocar a senha aqui
                                                                                                                                      |
   <connectionStrings>                                                                                                                V
