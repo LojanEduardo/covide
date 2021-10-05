@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Covid.Models.Lote>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lotes de vacina</h2>
+
+<div class="mb-2">
+    @Html.ActionLink("Adicionar", "Create", new { area = "" }, new { @class = "btn btn-primary" })
+</div>
+<div class="col-12 input-group mb-2 pl-0">
+    <input class="input-group border border-secondary rounded-left" type="text" id="myInput" onkeyup="Pesquisar()" placeholder="Filtro de vacina">
+    <div class="input-group-append">
+        <button class="btn btn-secondary" onclick="LimparPesquisa()">Limpar</button>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            Nome da vacina
+        </th>
+        <th>
+            Nome da empresa
+        </th>
+        <th>
+            Quantidade(u)
+        </th>
+        <th>
+            Cidade
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="bloco">
+            <td id="nome">
+                @Html.DisplayFor(modelItem => item.Vacina.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vacina.Empresa.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade) Unidades
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Local.Cidade)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-secondary" }) |
+                @Html.ActionLink("Deletar", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script>
+    function Pesquisar() {
+        var filter = $("#myInput").val().toUpperCase()
+        var ul = $(".bloco")
+
+        for (var i = 0; i < ul.length; i++) {
+            var a = ul[i]
+            li = $(a).find("#nome")
+            if (li.text().toUpperCase().indexOf(filter) > -1) {
+                $(a).show()
+            } else {
+                $(a).hide()
+            }
+        }
+    }
+
+    function LimparPesquisa() {
+        $("#myInput").val('')
+        Pesquisar()
+    }
+</script>

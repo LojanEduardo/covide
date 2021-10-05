@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Covid.Models.Local>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Locais de vacinação</h2>
+
+<div class="mb-2">
+    @Html.ActionLink("Adicionar", "Create", new { area = "" }, new { @class = "btn btn-primary" })
+</div>
+<div class="col-12 input-group mb-2 pl-0">
+    <input class="input-group border border-secondary rounded-left" type="text" id="myInput" onkeyup="Pesquisar()" placeholder="Filtro de cidade">
+    <div class="input-group-append">
+        <button class="btn btn-secondary" onclick="LimparPesquisa()">Limpar</button>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bairro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rua)
+        </th>
+        <th>
+            Número
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="bloco">
+            <td id="nome">
+                @Html.DisplayFor(modelItem => item.Cidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bairro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rua)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-secondary" }) |
+                @*@Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |*@
+                @Html.ActionLink("Deletar", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script>
+    function Pesquisar() {
+        var filter = $("#myInput").val().toUpperCase()
+        var ul = $(".bloco")
+
+        for (var i = 0; i < ul.length; i++) {
+            var a = ul[i]
+            li = $(a).find("#nome")
+            if (li.text().toUpperCase().indexOf(filter) > -1) {
+                $(a).show()
+            } else {
+                $(a).hide()
+            }
+        }
+    }
+
+    function LimparPesquisa() {
+        $("#myInput").val('')
+        Pesquisar()
+    }
+</script>

@@ -1,0 +1,86 @@
+﻿@model Covid.Models.Vacinado
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Cadastrar vacinado</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Cpf, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Cpf, new { htmlAttributes = new { @class = "form-control", @Id = "cpf", @type = "text" } })
+            @Html.ValidationMessageFor(model => model.Cpf, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2 mb-2">Nome completo</div>
+        @*@Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DataNascimento, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @class = "form-control" , @type = "datetime-local" } })
+            @Html.ValidationMessageFor(model => model.DataNascimento, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Dose, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @{ 
+                var lista = new SelectList(
+                new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "Primeira dose", Value = "1"},
+                    new SelectListItem { Text = "Segunda dose", Value = "2"},
+                    new SelectListItem { Text = "Terceira dose", Value = "3"},
+                }, "Value", "Text", 1);
+            }
+            @Html.DropDownListFor(model => model.Dose, lista, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Dose, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2 mb-2">Lote</div>
+        <div class="col-md-10">
+            @Html.DropDownList("LoteId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.LoteId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Criar" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Index", null, htmlAttributes: new { @class = "btn text-primary" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $("#cpf").inputmask("999.999.999-99");
+        });
+     </script>
+}

@@ -1,0 +1,147 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron bg-dark text-white mb-2 p-4 mt-2">
+    <h1 class="">Covid-19 Dados das Vacinas</h1>
+    <p class="lead">Software que tem como objetivo auxilia no gerenciamento das vacinas e as vacinações.</p>   
+</div>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="p-2 col-md-4 mt-2">
+        <div class="border rounded">
+            <div class="p-3 rounded bg-dark text-white">
+                <div class="h4 border-bottom border-gray pb-2 mb-0">Vacinas Distribuídas</div>
+                <div class="media text-white pt-3 h4">
+                    <span class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                        <strong class="d-inline-block text-gray-dark">@ViewBag.VacinasD</strong>
+                        @if (ViewBag.VacinasU == 0)
+                        {<text> vacinas foram distribuídas.</text>}
+                    else if (ViewBag.VacinasU == 1)
+                    { <text> vacina foi distribuída.</text>}
+                else
+                { <text> vacinas foram distribuídas.</text>}
+                    </span>
+                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span class="d-block text-right mt-3">
+                        @Html.ActionLink("Ir para Lotes de vacina", "Index", "Lotes", new { area = "" }, htmlAttributes: new { @class = "text-white" })
+                    </span>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="p-2 col-md-4 mt-2">
+        <div class="border rounded">
+            <div class="p-3 bg-dark text-white rounded">
+                <div class="h4 border-bottom border-gray pb-2 mb-0">Vacinas Utilizadas</div>
+                <div class="media text-white pt-3 h4">
+                    <span class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                        No total <strong class="d-inline-block text-gray-dark">@ViewBag.VacinasU</strong>
+                        @if (ViewBag.VacinasU == 0)
+                        {<text> vacinas foram usadas.</text>}
+                    else if (ViewBag.VacinasU == 1)
+                    { <text> vacina foi usada.</text>}
+                else
+                { <text> vacinas foram usadas.</text>}
+                    </span>
+                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span class="d-block text-right mt-3">
+                        @Html.ActionLink("Ir para Vacinados", "Index", "Vacinadoes", new { area = "" }, htmlAttributes: new { @class = "text-white" })
+                    </span>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="p-2 col-md-4 mt-2">
+        <div class="border rounded">
+            <div class="p-3 bg-dark text-white rounded">
+                <div class="h4 border-bottom border-gray pb-2 mb-0">Pessoas vacinadas</div>
+                <div id="contadorVacinados">
+                    <div class="row">
+                        <div class="col-12 pt-4 text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                    <span class="d-block text-right mt-3">
+                        @Html.ActionLink("Ir para Vacinados", "Index", "Vacinadoes", new { area = "" }, htmlAttributes: new { @class = "text-white" })
+                    </span>
+                    }
+            </div>
+        </div>
+    </div>
+    <div class="p-2 col-md-4 mt-2">
+        <div class="border rounded">
+            <div class="p-3 bg-dark text-white rounded">
+                <div class="h4 border-bottom border-gray pb-2 mb-0">Pessoas totalmente vacinadas</div>
+                <div class="media text-white pt-3 h4">
+                    <span class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                        No total <strong class="d-inline-block text-gray-dark">@ViewBag.PesTVascinado</strong>
+                        @if (ViewBag.PesTVascinado == 0)
+                            {<text> pessoas foram vacinadas.</text>}
+                        else if (ViewBag.PesTVascinado == 1)
+                            { <text> pessoa foi vacinada.</text>}
+                        else
+                            { <text> pessoas foram vacinadas.</text>}
+                    </span>
+                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span class="d-block text-right mt-3">
+                        @Html.ActionLink("Ir para Vacinados", "Index", "Vacinadoes", new { area = "" }, htmlAttributes: new { @class = "text-white" })
+                    </span>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="p-2 col-md-4 mt-2">
+        <div class="border rounded">
+            <div class="p-3 bg-dark text-white rounded">
+                <div class="h4 border-bottom border-gray pb-2 mb-0">Tipos de vacinas</div>
+                <div class="media text-white pt-3 h4">
+                    <span class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                        Existe um total de <strong class="d-inline-block text-gray-dark">@ViewBag.VaciT</strong>
+                        @if (ViewBag.VaciT == 0)
+                            {<text> vacinas.</text>}
+                        else if (ViewBag.VaciT == 1)
+                            { <text> vacina.</text>}
+                        else
+                            { <text> vacinas.</text>}
+                    </span>
+                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span class="d-block text-right mt-3">
+                        @Html.ActionLink("Ir para Empresas", "Index", "Empresas", new { area = "" }, htmlAttributes: new { @class = "text-white" })
+                    </span>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+    
+    @section Scripts{
+        <script>
+        $(document).ready(function () {
+            $.get("@Url.Action("ContadorVacinados","Home")",
+                function (data) {
+                    $('#contadorVacinados').html(data);
+                });
+            $.get("@Url.Action("CidadeMaisVacinada","Home")",
+                function (data) {
+                    $('#cidadeMaisVacinada').html(data);
+                });
+        });
+        </script>
+    }

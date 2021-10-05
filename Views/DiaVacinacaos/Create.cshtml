@@ -1,0 +1,43 @@
+﻿@model Covid.Models.DiaVacinacao
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Criar dia vacinação</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <div class="control-label col-md-2 mb-2">Data da Vacinação</div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DataVacinacao, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local" } })
+            @Html.ValidationMessageFor(model => model.DataVacinacao, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md-2 mb-2">Id do Lote</div>
+        <div class="col-md-10">
+            @Html.DropDownList("LoteId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.LoteId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Criar" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "Index", "DiaVacinacaos", null, htmlAttributes: new { @class = "btn text-primary" })
+</div>

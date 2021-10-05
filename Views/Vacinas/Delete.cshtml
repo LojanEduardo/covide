@@ -1,0 +1,32 @@
+﻿@model Covid.Models.Vacina
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Tem certeza que quer deletar esta vacina?</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nome da vacina
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-danger" />         
+        </div>
+    }
+</div>
+
+<div>
+    @Html.ActionLink("Voltar", "Index", new { id = Model.EmpresaId }, htmlAttributes: new { @class = "btn text-primary" })
+</div>

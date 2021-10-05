@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Covid.Models.Empresa>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div class="m-3 ml-4">
+    <h2>Empresas</h2>
+    @Html.ActionLink("Adicionar", "Create", new { area = "" }, new { @class = "btn btn-primary" })
+</div>
+<div class="col-12 input-group mb-2">
+    <input class="ml-2 input-group border border-secondary rounded-left" type="text" id="myInput" onkeyup="Pesquisar()" placeholder="Filtro de empresa">
+    <div class="input-group-append">
+        <button class="btn btn-secondary" onclick="LimparPesquisa()">Limpar</button>
+    </div>
+</div>
+
+<div class="row m-3">
+
+@foreach (var item in Model) {
+    <div class="p-2 col-md-4 col-12 bloco">
+        <div class="card shadow">
+            <div class="card-body">
+                <h5 class="card-title text-center" id="nome">@Html.DisplayFor(modelItem => item.Nome)</h5>
+                <hr />
+                <div class="row">
+                    <div class="p-2 col-md-6 col-12">
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-block btn-secondary" })
+                    </div>
+                    <div class="p-2 col-md-6 col-12">
+                        @Html.ActionLink("Deletar", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-block btn-danger" })
+                    </div>
+                    <div class="p-2 col-12 ">
+                        @Html.ActionLink("Acessar", "Index", "Vacinas", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-block btn-success" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+</div>
+
+<script>
+    function Pesquisar() {
+        //pega o que foi digitado no campo de pesquisar e transforma em maiusculo e joga para variavel filter
+        var filter = $("#myInput").val().toUpperCase()
+        //pega todos os bloco e joga na variavel ul
+        var ul = $(".bloco")
+
+        //percorre todos os blocos
+        for (var i = 0; i < ul.length; i++) {
+            //variavel a recebe o bloco[i]
+            var a = ul[i]
+            //procuro #nome no bloco[i] 
+            li = $(a).find("#nome")
+            //mostra os blocos que foram validados, pelo nome na pesquisa
+            if (li.text().toUpperCase().indexOf(filter) > -1) {
+                $(a).show()
+            } else {
+                //esconde os blocos que não correspondem a pesquisa
+                $(a).hide()
+            }
+        }
+    }
+
+    //defini o myInput como vazio, ou seja apaga
+    function LimparPesquisa() {
+        $("#myInput").val('')
+        Pesquisar()
+    }
+</script>

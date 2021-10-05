@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Covid.Models.DiaVacinacao>
+
+@{
+    ViewBag.Title = "LocalVacinacao";
+}
+
+<h2>Local da Vacinação</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Cidade
+        </th>
+        <th>
+            Bairro
+        </th>
+        <th>
+            Número
+        </th>
+        <th>
+            Vacina
+        </th>
+        <th>
+            Data da Vacinação
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lote.Local.Cidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lote.Local.Bairro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lote.Local.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lote.Vacina.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataVacinacao)
+            </td>
+        </tr>
+    }
+
+</table>

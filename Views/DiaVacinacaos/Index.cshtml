@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Covid.Models.DiaVacinacao>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Registrar dia de vacinação</h2>
+<div class="mb-2">
+    @Html.ActionLink("Adicionar", "Create", "DiaVacinacaos", new { area = "" }, htmlAttributes: new { @class = "btn-primary btn" })
+</div>
+<div class="col-12 input-group mb-2 pl-0">
+    <input class="input-group border border-secondary rounded-left" type="text" id="myInput" onkeyup="Pesquisar()" placeholder="Filtro de data">
+    <div class="input-group-append">
+        <button class="btn btn-secondary" onclick="LimparPesquisa()">Limpar</button>
+    </div>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Lote.Id)
+        </th>
+        <th>
+            Data da Vacinação
+        </th>
+        <th>
+            Id do Lote
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="bloco">
+            <td>
+                @Html.DisplayFor(modelItem => item.Id   )
+            </td>
+            <td id="nome">
+                @Html.DisplayFor(modelItem => item.DataVacinacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoteId)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-secondary" }) |
+                @Html.ActionLink("Deletar", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script>
+    function Pesquisar() {
+        var filter = $("#myInput").val().toUpperCase()
+        var ul = $(".bloco")
+
+        for (var i = 0; i < ul.length; i++) {
+            var a = ul[i]
+            li = $(a).find("#nome")
+            if (li.text().toUpperCase().indexOf(filter) > -1) {
+                $(a).show()
+            } else {
+                $(a).hide()
+            }
+        }
+    }
+
+    function LimparPesquisa() {
+        $("#myInput").val('')
+        Pesquisar()
+    }
+</script>

@@ -1,0 +1,64 @@
+﻿@model Covid.Models.Vacinado
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Você tem certeza que deseja excluir este vacinado?</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cpf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cpf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            Data Nascimento
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataNascimento)
+        </dd>
+
+        <dt>
+            Data da Vacinação
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataVacinado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dose)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dose)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-danger" />
+        </div>
+    }
+</div>
+@Html.ActionLink("Voltar", "Index", new { id = "" }, htmlAttributes: new { @class = "btn text-primary" })

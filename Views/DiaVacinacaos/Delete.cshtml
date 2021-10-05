@@ -1,0 +1,41 @@
+﻿@model Covid.Models.DiaVacinacao
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Tem certeza que deseja excluir este dia de vacinação?</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Lote.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lote.Id)
+        </dd>
+
+        <dt>
+            Data da Vacinação
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataVacinacao)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-danger" />
+        </div>
+    }
+</div>
+
+<div>
+    @Html.ActionLink("Voltar", "Index", "DiaVacinacaos", null, htmlAttributes: new { @class = "btn text-primary" })
+</div>

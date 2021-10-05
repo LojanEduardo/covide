@@ -1,0 +1,48 @@
+﻿@model Covid.Models.Lote
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Tem certeza que deseja deletar este lote? </h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Local.Cidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Local.Cidade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vacina.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vacina.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantidade)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-danger" />
+
+        </div>
+    }
+</div>
+@Html.ActionLink("Voltar", "Index", new { id = ""}, htmlAttributes: new { @class = "btn text-primary" })

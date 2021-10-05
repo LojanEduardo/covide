@@ -1,0 +1,14 @@
+﻿@model Covid.Models.Vacinado
+
+<div class="media text-white pt-3 h4">
+    <span class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        No total <strong class="d-inline-block text-gray-dark">@ViewBag.ContadorVacinado</strong>
+        @if (ViewBag.ContadorVacinado == 0)
+            {<text>pessoas foram vacinadas.</text>}
+        else if (ViewBag.ContadorVacinado == 1)
+            { <text>pessoa foi vacinada.</text>}
+        else
+            { <text>pessoas foram vacinadas.</text>}
+    </span>
+</div>
+

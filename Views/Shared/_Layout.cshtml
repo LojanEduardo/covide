@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Covid-e</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="p-0">
+    <nav class="navbar navbar-expand-lg mb-1 navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">@Html.ActionLink("Covid-e", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li href="#">@Html.ActionLink("Empresa", "Index", "Empresas", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li href="#">@Html.ActionLink("Locais", "Index", "Locals", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li href="#">@Html.ActionLink("Lotes", "Index", "Lotes", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li href="#">@Html.ActionLink("Vacinados", "Index", "Vacinadoes", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li href="#">@Html.ActionLink("Dia da Vacinação", "Index", "DiaVacinacaos", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li href="#">@Html.ActionLink("Histórico", "Historico", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+                    else
+                    {
+                        <li href="#">@Html.ActionLink("Local da vacinação", "LocalVacinacao", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+                </ul>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="col-8 mt-1" style="color: black">
+                        <span class="text-white"> @User.Identity.Name.Split('|')[1] </span>
+                    </li>
+                    <li class="col-4 mb-1">
+                        @Html.ActionLink("Sair", "Sair", "Usuario", new { area = "" }, new { @class = "btn btn-primary btn-block btn-sm float-right" })
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-link"><a class="btn btn-secondary" href="@Url.Action("Cadastro","Usuario")"><span class="glyphicon glyphicon-user"></span> Cadastro</a></li>
+                    <li class="nav-link"><a class="btn btn-primary" href="@Url.Action("Login","Usuario")"><span class="glyphicon glyphicon-log-in"></span> Entrar</a></li>
+                }
+            </ul>
+        </div>
+    </nav>
+
+
+
+
+
+    <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" style="position: absolute; top: 60px; right: 5px;" data-delay="4000" data-autohide="true">
+        <div class="toast-header">
+            <strong class="mr-auto">Notificação</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            @ViewBag.Mensagem
+        </div>
+    </div>
+    
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    <div class="fixed-bottom bg-dark text-white text-center">
+        <footer style="border-top: 1px solid white;">
+            <span class="h6">&copy; @DateTime.Now.Year - Covid-e</span>
+        </footer>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/inputmask")
+    @RenderSection("scripts", required: false)
+
+    <script>
+    $(document).ready(function () {
+        @{
+            if (ViewBag.Mensagem != null) {
+                string msg = "";
+                msg = ViewBag.Mensagem;
+                if (msg.Length > 0)
+                {
+                    <text>$('.toast').toast('show')</text>
+                }
+            }
+        }
+
+    });
+    </script>
+
+</body>
+</html>
