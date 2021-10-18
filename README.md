@@ -1,5 +1,5 @@
 # covide
-Covid-e é um software desenvolvido em MVC, sendo uma ferramenta com intuito de administrar vacinas, lotes de vacinas e vacinados do covid-19, cadastrados no sistema.
+Covid-e é um software desenvolvido em ASP.NET MVC, sendo uma ferramenta com intuito de administrar vacinas, lotes de vacinas e vacinados do covid-19, cadastrados no sistema.
 ------------------
 Primeiramente para abrir o software é necessário abri o arquivo Covid.sln, de preferência Visual Studio 2019
 
